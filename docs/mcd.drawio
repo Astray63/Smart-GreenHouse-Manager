@@ -1,0 +1,75 @@
+<mxfile host="65bd71144e">
+    <diagram id="mcd" name="MCD MERISE (Option A)">
+        <mxGraphModel dx="653" dy="651" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="ent_utilisateur" value="&lt;b&gt;UTILISATEUR&lt;/b&gt;&lt;hr&gt;&lt;u&gt;id&lt;/u&gt;&lt;br&gt;nom&lt;br&gt;email&lt;br&gt;mot_de_passe&lt;br&gt;role" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="80" width="180" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_type_mesure" value="&lt;b&gt;TYPE_MESURE&lt;/b&gt;&lt;hr&gt;&lt;u&gt;code&lt;/u&gt;&lt;br&gt;libelle" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="510" width="180" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="ent_mesure" value="&lt;b&gt;MESURE&lt;/b&gt;&lt;hr&gt;&lt;u&gt;id&lt;/u&gt;&lt;br&gt;date&lt;br&gt;temperature&lt;br&gt;humidite&lt;br&gt;luminosite" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="90" width="200" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc_definir" value="&lt;b&gt;DEFINIR&lt;/b&gt;&lt;hr&gt;valeur_min&lt;br&gt;valeur_max" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fillColor=#e1f5fe;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="270" width="160" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="assoc_generer" value="&lt;b&gt;GENERER&lt;/b&gt;&lt;hr&gt;date&lt;br&gt;valeur" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fillColor=#fff3e0;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="225" width="160" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel_user_definir" style="endArrow=none;endFill=0;html=1;rounded=0;" parent="1" source="ent_utilisateur" target="assoc_definir" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lbl_user_definir" value="0,N" style="resizable=0;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;" parent="rel_user_definir" vertex="1" connectable="0">
+                    <mxGeometry x="-1" relative="1" as="geometry">
+                        <mxPoint x="10" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="rel_definir_type" style="endArrow=none;endFill=0;html=1;rounded=0;" parent="1" source="assoc_definir" target="ent_type_mesure" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lbl_definir_type" value="1,1" style="resizable=0;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;" parent="rel_definir_type" vertex="1" connectable="0">
+                    <mxGeometry x="1" relative="1" as="geometry">
+                        <mxPoint x="-10" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="rel_user_generer" style="endArrow=none;endFill=0;html=1;rounded=0;" parent="1" source="ent_utilisateur" target="assoc_generer" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lbl_user_generer" value="0,N" style="resizable=0;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;" parent="rel_user_generer" vertex="1" connectable="0">
+                    <mxGeometry x="-1" relative="1" as="geometry">
+                        <mxPoint x="10" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="rel_generer_type" style="endArrow=none;endFill=0;html=1;rounded=0;" parent="1" source="assoc_generer" target="ent_type_mesure" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="lbl_generer_type" value="1,1" style="resizable=0;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;" parent="rel_generer_type" vertex="1" connectable="0">
+                    <mxGeometry x="1" relative="1" as="geometry">
+                        <mxPoint x="-10" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="note_merise" value="&lt;b&gt;Modèle MERISE&lt;/b&gt;&lt;br&gt;• Entités : rectangles&lt;br&gt;• Associations : losanges&lt;br&gt;• Cardinalités : min,max" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#e3f2fd;strokeColor=#1976d2;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="460" width="220" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_associations" value="&lt;b&gt;Associations :&lt;/b&gt;&lt;br&gt;• DEFINIR : seuils par utilisateur/type&lt;br&gt;• GENERER : alertes déclenchées (Alerte)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff8e1;strokeColor=#f57f17;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="690" width="320" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_cardinalites" value="&lt;b&gt;Cardinalités :&lt;/b&gt;&lt;br&gt;• 1,1 : un vers un exactement (côté association)\n• 0,N : zéro vers plusieurs" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#e8f5e8;strokeColor=#2e7d32;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="580" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_mesure" value="MESURE stockée en MongoDB (document)\nPas de lien direct avec UTILISATEUR ni avec ALERTE" style="shape=note;whiteSpace=wrap;html=1;size=16;fillColor=#fffbe6;strokeColor=#eab308;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="255" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="note_typemesure" value="TYPE_MESURE est un domaine (énumération)\nPas nécessairement matérialisé en table SQL" style="shape=note;whiteSpace=wrap;html=1;size=16;fillColor=#e3f2fd;strokeColor=#1976d2;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="525" width="300" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="contraintes" value="&lt;b&gt;Contraintes d&#39;intégrité :&lt;/b&gt;&lt;br&gt;• email UNIQUE dans UTILISATEUR&lt;br&gt;• (utilisateur_id, type_code) UNIQUE dans DEFINIR&lt;br&gt;• valeur_min et valeur_max optionnels dans DEFINIR&lt;br&gt;• date obligatoire dans GENERER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#616161;align=left;verticalAlign=top;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="810" width="360" height="130" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
