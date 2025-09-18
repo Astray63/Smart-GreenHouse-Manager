@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NavBar from '../components/NavBar.jsx';
 import { useAuth } from '../state/AuthContext.jsx';
+import Layout from '../components/Layout.jsx';
+import SectionHeader from '../components/ui/SectionHeader.jsx';
+import Card from '../components/ui/Card.jsx';
+import Button from '../components/ui/Button.jsx';
+import Input from '../components/ui/Input.jsx';
 
 const TYPES = ['temperature','humidite','luminosite'];
 
@@ -27,29 +31,24 @@ export default function Seuils() {
   }
 
   return (
-    <div>
-      <NavBar />
-      <div className="p-4 max-w-3xl mx-auto">
-        <h1 className="text-2xl font-semibold mb-4">Seuils</h1>
+    <Layout>
+      <div className="max-w-3xl mx-auto">
+        <SectionHeader title="Seuils" />
         <div className="space-y-4">
           {TYPES.map(t => (
-            <div key={t} className="bg-white p-4 rounded shadow">
-              <h2 className="font-bold capitalize mb-2">{t}</h2>
-              <div className="flex gap-2 items-end">
-                <div>
-                  <label className="block text-xs">Valeur min</label>
-                  <input type="number" value={data[t]?.valeur_min ?? ''} onChange={e=>update(t,'valeur_min', e.target.value)} className="border p-1 rounded" />
+            <Card key={t}>
+              <h2 className="font-semibold capitalize mb-2">{t}</h2>
+              <div className="flex flex-col sm:flex-row gap-3 items-end">
+                <Input type="number" label="Valeur min" value={data[t]?.valeur_min ?? ''} onChange={e=>update(t,'valeur_min', e.target.value)} className="sm:w-40" />
+                <Input type="number" label="Valeur max" value={data[t]?.valeur_max ?? ''} onChange={e=>update(t,'valeur_max', e.target.value)} className="sm:w-40" />
+                <div className="sm:ml-auto">
+                  <Button onClick={()=>save(t)}>Sauvegarder</Button>
                 </div>
-                <div>
-                  <label className="block text-xs">Valeur max</label>
-                  <input type="number" value={data[t]?.valeur_max ?? ''} onChange={e=>update(t,'valeur_max', e.target.value)} className="border p-1 rounded" />
-                </div>
-                <button onClick={()=>save(t)} className="ml-auto bg-green-600 text-white px-3 py-1 rounded">Sauvegarder</button>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

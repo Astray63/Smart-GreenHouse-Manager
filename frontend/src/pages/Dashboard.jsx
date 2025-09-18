@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NavBar from '../components/NavBar.jsx';
 import { useAuth } from '../state/AuthContext.jsx';
+import Layout from '../components/Layout.jsx';
+import Card from '../components/ui/Card.jsx';
+import SectionHeader from '../components/ui/SectionHeader.jsx';
 
 export default function Dashboard() {
   const { token } = useAuth();
@@ -15,21 +17,23 @@ export default function Dashboard() {
   useEffect(() => { load(); const i = setInterval(load, 10000); return () => clearInterval(i); }, []);
 
   return (
-    <div>
-      <NavBar />
-      <div className="p-4">
-        <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {['temperature','humidite','luminosite'].map(type => (
-            <div key={type} className="bg-white p-4 rounded shadow">
-              <h2 className="font-bold capitalize mb-2">{type}</h2>
-              <ul className="text-sm max-h-60 overflow-y-auto">
-                {mesures.map((m,i) => <li key={i}>{new Date(m.date).toLocaleTimeString()} : {m[type]}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
+    <Layout>
+      <SectionHeader title="Dashboard" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {['temperature','humidite','luminosite'].map(type => (
+          <Card key={type}>
+            <h2 className="font-semibold capitalize">{type}</h2>
+            <ul className="mt-2 text-sm max-h-60 overflow-y-auto space-y-1">
+              {mesures.map((m,i) => (
+                <li key={i} className="flex justify-between text-gray-600 dark:text-gray-300">
+                  <span>{new Date(m.date).toLocaleTimeString()}</span>
+                  <span className="font-medium">{m[type]}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
       </div>
-    </div>
+    </Layout>
   );
 }
